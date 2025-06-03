@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor 💖</title>
+    <style>
+        body {
+            background-color: #ffe6f0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #c2185b;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #880e4f;
+            margin-bottom: 40px;
+        }
+
+        .contador {
+            background-color: white;
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.5em;
+            color: #d81b60;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>❤️ Nosso Amor ❤️</h1>
+    <h2>Estamos juntos há:</h2>
+    <div class="contador" id="contador">
+        Carregando...
+    </div>
+
+    <script>
+        const aniversario = new Date("2024-10-22T16:00:00"); // <-- Coloca aqui a data de vocês
+
+        function atualizarContador() {
+            const agora = new Date();
+
+            let anos = agora.getFullYear() - aniversario.getFullYear();
+            let meses = agora.getMonth() - aniversario.getMonth();
+            let dias = agora.getDate() - aniversario.getDate();
+            let horas = agora.getHours() - aniversario.getHours();
+            let minutos = agora.getMinutes() - aniversario.getMinutes();
+            let segundos = agora.getSeconds() - aniversario.getSeconds();
+
+            if (segundos < 0) {
+                segundos += 60;
+                minutos--;
+            }
+
+            if (minutos < 0) {
+                minutos += 60;
+                horas--;
+            }
+
+            if (horas < 0) {
+                horas += 24;
+                dias--;
+            }
+
+            if (dias < 0) {
+                const ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0);
+                dias += ultimoMes.getDate();
+                meses--;
+            }
+
+            if (meses < 0) {
+                meses += 12;
+                anos--;
+            }
+
+            document.getElementById('contador').innerHTML = 
+                `${anos} ano(s), ${meses} mês(es), ${dias} dia(s),<br> 
+                ${horas} hora(s), ${minutos} minuto(s) e ${segundos} segundo(s) 💖`;
+        }
+
+        atualizarContador();
+        setInterval(atualizarContador, 1000);
+    </script>
+
+</body>
+</html>
